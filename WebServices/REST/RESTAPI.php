@@ -11,7 +11,7 @@ function get_person_by_id($id)
   // Build JSON array to create the necessary data structure
   switch ($id){
     case 1:
-      $person_info = array("person_name" => "Dan Krutz", "person_age" => "12", "favorite_movie" => "Bloodsport 2"); 
+      $person_info = array("person_name" => "Dan Krutz", "person_age" => "12", "favorite_movie" => "Ted"); 
       break;
     case 2:
       $person_info = array("person_name" => "Mike Lutz", "person_age" => "34", "favorite_movie" => "Bloodsport");
@@ -33,7 +33,7 @@ function get_person_list()
 {
   //normally this info would be pulled from a database.
   //build JSON array
-  $app_list = array(array("id" => 1, "name" => "Prof 1"), array("id" => 2, "name" => "Prof 2"), array("id" => 3, "name" => "Prof 3"), array("id" => 4, "name" => "Prof 4")); 
+  $app_list = array(array("id" => 1, "name" => "Prof A"), array("id" => 2, "name" => "Prof 2"), array("id" => 3, "name" => "Prof 3"), array("id" => 4, "name" => "Prof 4")); 
 
   return $app_list;
 }
