@@ -262,4 +262,9 @@ Next change the way you handle errors to send to the other node (again keeping t
 		}
 	}
 
-Once all of the changes are made, run it one last time, and if it worked, congratulations!  At this point, feel free to play around with this, or go back to just linking with your group.  Try modifying the message in special ways, or changing sender.html to do something different.  If you need help with HTML or PHP, w3schools is always a good reference.
+Once all of the changes are made, run it one last time, and if it worked, congratulations!
+
+Finished
+--------
+
+At this point, feel free to play around with this, or go back to just linking with your group.  Try modifying the message in special ways, or changing sender.html to do something different.  If you need help with HTML or PHP, w3schools is always a good reference.
