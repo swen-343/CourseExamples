@@ -4,7 +4,7 @@ Distributed Activity Instructions
 Getting Started
 ---------------
 
-Download end.php, message.php and sender.html (under starter files) to your SE lab computer from [here](https://github.com/swen-343/CourseExamples/tree/master/WebServices/REST).  Move the files into your Z drive at the following location: Z:\public_html\activities\distributed (create the folders if need be)
+Download end.php, message.php and sender.html (under starter files) to your SE lab computer from [here](https://github.com/swen-343/CourseExamples/tree/master/Distributed).  Move the files into your Z drive at the following location: Z:\public_html\activities\distributed (create the folders if need be)
 
 Open PuTTY, and logon to nitron.se.rit.edu over port 22 using your SE username and password.  Once you have logged in, run the following commands:
 
@@ -51,7 +51,7 @@ Two common ways that web servers (and developers) determine what went wrong in a
 
 This is done by returning a JSON object from the webservice instead of a simple string.  The first step is to edit your "end.php" file to return the fields "status" (whether the service succeeded), "msg" (the message returned), and "count" (the number of nodes the message passed through).  Edit your code as follows:
 
-#### Old end.php ####
+#### Old end.php Code ####
 
 	<?php
 	
@@ -73,7 +73,7 @@ This is done by returning a JSON object from the webservice instead of a simple 
 
 	?>
 
-#### New end.php ####
+#### New end.php Code ####
 
 	<?php
 	
@@ -97,7 +97,7 @@ This is done by returning a JSON object from the webservice instead of a simple 
 
 As you can see, this changes that string to a php object containing the defined fields, and then on exit, encodes the object as JSON.  Next, however, you need to change message.php to accept this new response and check for any failures that occurred.  Modify the following section as follows:
 
-#### Old Return Section ####
+#### Old message.php Return Section ####
 
 	// Set the headers and send the request
 	$context  = stream_context_create($options);	
@@ -105,7 +105,7 @@ As you can see, this changes that string to a php object containing the defined 
 		
 	return $response;
 
-#### New Return Section ####
+#### New message.php Return Section ####
 
 	// Set the headers and send the request
 	$context  = stream_context_create($options);
@@ -122,7 +122,7 @@ As you can see, this changes that string to a php object containing the defined 
 
 As you can see this decodes the JSON and checks for the response code, returning the appropriate message, but you are not done yet.  You also have to change the error messages at the bottom, and encode the data as JSON.  Modify this section as follows:
 
-#### Old Section ####
+#### Old message.php Exit Section ####
 
 	// Create a default error string
 	$value = 'An error has occurred';
@@ -137,7 +137,7 @@ As you can see this decodes the JSON and checks for the response code, returning
 	// Return result back to the previous node
 	exit($value);
 
-#### New Section ####
+#### New message.php Exit Section ####
 
 	// Create a default error string
 	$value = array('status' => false, 'msg' => 'An error has occurred', 'count' => 0);
@@ -163,7 +163,7 @@ In order to add logging, one of your team members has to download the logger.php
 
 This allows php to properly write to the log file that you can look at later.  Next have each team member add the following code after the call to the next node, but before the code is returned, modifying the url to point to the group member who downloaded the logger:
 
-#### Logging Code ####
+#### Logging Code for message.php  ####
 
 	// Build the data array and the POST request
 	$data = array('message' => $message." sent to ".$next_node);
@@ -195,7 +195,7 @@ Adding Redundancy
 
 For this step, split the chain in half as evenly as is possible (if it is not even, then one person will have to sit out), and pair up people within the chain so that person A1, and B1 each send to person A2, and B2 respectively.  Once this is established, edit your code by adding a second node, and sending to it in the event of a failure (remember to keep track of who is A, and who is B to wire it up correctly):
 
-#### Old Node Code ####
+#### Old message.php Node Definitions ####
 
 	// Set the next user and node to send to
 	$next_user = 'wes7817'; // CHANGE THIS USER
@@ -205,7 +205,7 @@ For this step, split the chain in half as evenly as is possible (if it is not ev
 	...
 	$data = array('message' => $message." sent to ".$next_node);
 
-#### New Node Code ####
+#### New message.php Node Definitions ####
 
 	// Set the next user and node to send to
 	$next_userA = 'wes7817'; // CHANGE THIS USER
@@ -219,7 +219,7 @@ For this step, split the chain in half as evenly as is possible (if it is not ev
 
 Next change the way you handle errors to send to the other node (again keeping track of who is A, and who is B).
 
-#### Old Return Code ####
+#### Old message.php Return Code ####
 
 	if ($response != false) {
 		$response = json_decode($response);
@@ -230,7 +230,7 @@ Next change the way you handle errors to send to the other node (again keeping t
 		return $response;
 	}
 
-#### New Return Code ####
+#### New message.php Return Code ####
 
 	if ($response != false) {
 		$response = json_decode($response);
