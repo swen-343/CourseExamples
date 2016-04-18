@@ -1,0 +1,3 @@
+waynenodeB sent to http://www.se.rit.edu/~/activities/distributed/endB.php
+waynenodeB sent to http://www.se.rit.edu/~wes7817/activities/distributed/endB.php
+waynenodeA sent to http://www.se.rit.edu/~wes7817/activities/distributed/endA.php
