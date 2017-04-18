@@ -7,7 +7,7 @@ function send_message($message)
 {
   // Set the next user and node to send to
   $next_user = 'wes7817'; // CHANGE THIS USER
-  $next_node = 'http://www.se.rit.edu/~'.$next_user.'/activities/distributed/end.php'; //CHANGE THIS NODE
+  $next_node = 'http://www.se.rit.edu/~'.$next_user.'/activities/distributed/end.php'; //CHANGE THIS NODE to message.php
 
   // Modify the received message as we see fit.
   $message = $message.'abc'; //ADD YOUR NAME HERE
